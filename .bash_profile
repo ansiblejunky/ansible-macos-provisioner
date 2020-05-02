@@ -13,8 +13,6 @@ HISTIGNORE='ls:bg:fg:history'
 HISTTIMEFORMAT='%F %T '
 # Force multiline commands into one line for easier reading
 shopt -s cmdhist
-# Store history immediately into .bash_history file instead of when session terminates
-PROMPT_COMMAND='history -a'
 # -------------------------------------------------------------
 
 # brew - enable bash completion
