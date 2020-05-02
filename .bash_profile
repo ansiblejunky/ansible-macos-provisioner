@@ -63,11 +63,6 @@ function updatePrompt {
     # Base prompt: \W = working dir
     PROMPT="[\t] \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\]"
 
-    # Current Git repo
-    # if type "__git_ps1" > /dev/null 2>&1; then
-    #     PROMPT="$PROMPT$(__git_ps1 "${GREEN}(%s)${RESET}")"
-    # fi
-
     # Current virtualenv
     if [[ $VIRTUAL_ENV != "" ]]; then
         # Strip out the path and just leave the env name
