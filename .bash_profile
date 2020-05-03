@@ -13,6 +13,8 @@ HISTIGNORE='ls:bg:fg:history'
 HISTTIMEFORMAT='%F %T '
 # Force multiline commands into one line for easier reading
 shopt -s cmdhist
+# Store history immediately into .bash_history file instead of when session terminates
+shopt -s histappend
 # -------------------------------------------------------------
 
 # brew - enable bash completion
@@ -41,8 +43,9 @@ export GOPATH=$HOME/go
 # python environment manager - pyenv and virtualenv auto activation
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+  #export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 fi
-
 
 # PROMPT settings
 # -------------------------------------------------------------
@@ -61,11 +64,10 @@ function updatePrompt {
     # Base prompt: \W = working dir
     PROMPT="[\t] \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\]"
 
-    # Current virtualenv
-    if [[ $VIRTUAL_ENV != "" ]]; then
-        # Strip out the path and just leave the env name
-        PROMPT="$PROMPT ${BLUE}[${VIRTUAL_ENV##*/}]${RESET}"
-    fi
+    # Current python environment
+    PYENV_VERSION_NAME=`pyenv version-name`
+    # Strip out any paths and just leave the env name
+    PROMPT="$PROMPT [${BLUE}${PYENV_VERSION_NAME##*/}${RESET}]"
 
     PS1="$PROMPT \$ "
 }
