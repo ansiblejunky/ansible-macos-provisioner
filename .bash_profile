@@ -1,7 +1,5 @@
 # HISTORY settings
 # -------------------------------------------------------------
-# Append history instead of rewriting it
-shopt -s histappend
 # Allow a larger history file
 HISTFILESIZE=1000000
 HISTSIZE=1000000
