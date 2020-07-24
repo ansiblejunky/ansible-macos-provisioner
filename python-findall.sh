@@ -1,5 +1,28 @@
 #!/bin/bash
 
+
+##############################################################
+# System Verification
+#
+# Keep it clean! That is the best approach when using Python and
+# any tools that might use Python. There can easily be many installations
+# of Python on your system already and you don't even know it. 
+##############################################################
+
+# python - find alternate installations
+# echo "TASK: [Searching for alternate Python installations...] ******************"
+# if [ -d /Library/Frameworks/Python.framework ]
+# then
+#     echo -e "WARNING: Python installations exist within /Library/Frameworks/Python.framework/"
+#     echo -e "         It is recommended to remove this folder entirely.\n"
+#     exit 1
+# else
+#     echo "OK"
+# fi
+# echo -e "\n"
+#find /Applications/Python* -name "python"
+#find /Users/`whoami`/Applications/Python* -name "python"
+
 echo ""
 echo Find all python instances installed on Mac OSX
 echo ---------------------------------------------------------------
