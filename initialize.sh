@@ -55,7 +55,6 @@ echo ""
 
 echo "TASK: [Perform brew cleanup tasks ...] ******************"
 brew cleanup
-brew cask cleanup
 brew doctor
 
 echo ""
@@ -67,10 +66,10 @@ echo "TASK: [Begin base provisioning ...] ******************"
 brew install pyenv
 brew install pyenv-virtualenv
 
-OSXP_PYENV_VERSIOPN="$(pyenv version-name)"
+OSXP_PYENV_VERSION="$(pyenv version-name)"
 if [[ "$OSXP_PYENV_VERSIOPN" == "ansible" ]]
 then
-    echo -e "Found ansible virtual environment: " $OSXP_PYENV_VERSIOPN
+    echo -e "Found ansible virtual environment: " $OSXP_PYENV_VERSION
 else
     echo -e "pyevn was not initialized ... attempting installation\n"
     pyenv install -s 3.8.2
