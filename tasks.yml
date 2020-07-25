@@ -155,7 +155,7 @@
 
 - name: Disk image burner - https://www.balena.io/etcher/
   homebrew_cask:
-    name: etcher
+    name: balenaetcher
     state: present
 
 - name: Password manager
@@ -202,10 +202,16 @@
     state: present
 - name: Install Magnet from Mac App Store
   shell: mas install 441258766
+  register: results
+  changed_when: "'already installed' not in results.stdout"
 - name: Install Monosnap from Mac App Store
   shell: mas install 540348655
+  register: results
+  changed_when: "'already installed' not in results.stdout"
 - name: Install CopyClip from Mac App Store
   shell: mas install 595191960
+  register: results
+  changed_when: "'already installed' not in results.stdout"
 
 - name: Application Management - appcleaner
   homebrew_cask:
@@ -228,7 +234,7 @@
 
 # Allows automation of configuring your docked items on your Mac
 - name: dockutil - Manage OSX Dock Items - https://github.com/kcrawford/dockutil
-  homebrew_cask:
+  homebrew:
     name: dockutil
     state: present
 
@@ -249,7 +255,7 @@
     name: visual-studio-code
     state: present
 - name: virtualbox
-  homebrew:
+  homebrew_cask:
     name: virtualbox
     state: present
 - name: vagrant
@@ -264,7 +270,11 @@
   shell: vagrant plugin install vagrant-hostmanager vagrant-list vagrant-registration vagrant-scp vagrant-vbguest
 - name: packer
   homebrew:
-    name: packer, packer-completion
+    name: packer
+    state: present
+- name: packer-completion
+  homebrew:
+    name: packer-completion
     state: present
 - name: packer
   homebrew_cask:

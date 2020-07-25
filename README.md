@@ -1,5 +1,34 @@
 # Ansible OSX Provisioner
 
+
+## Notes
+
+Steps:
+
+- Authenticate in Mac App Store
+- Launch Safari app
+	- navigate to GitHub.com
+	- login to GitHub.com
+	- generate personal access token
+- Launch Terminal app
+	- change default shell
+	   chsh -s /bin/bash
+	- run `git` to install x-tools
+	- Clone repo for osx-provisioner
+		- `git clone <repo>`
+		- authenticate using username + personal-access-token
+	- Run `./initialize.sh` to prepare Mac with home-brew, pyenv, and install python virtualenv with ansible
+	- Run `ansible-playbook playbook.yml --ask-become-pass` to install software
+
+
+TODO: installing virtualbox requires approval of software extension so it fails on first attempt
+TODO: Install google chrome and extensions
+ 
+TODO: remove pyenv pyenv-virtualenv from tasks.yml
+TODO: maybe ignore_errors: true in case a brew install fails 
+
+
+
 ##############################################################
 # Prerequisites
 #

@@ -81,6 +81,7 @@ fi
 echo ""
 
 cp files/.bash_profile ~/.bash_profile
+chsh -s /bin/bash
 source ~/.bash_profile
 
 echo ""
