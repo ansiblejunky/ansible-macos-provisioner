@@ -73,9 +73,9 @@ then
 else
     echo -e "pyevn was not initialized ... attempting installation\n"
     pyenv install -s 3.8.2
-    pyenv local 3.8.2
+    pyenv global 3.8.2
     pyenv virtualenv ansible
-    pyenv activate ansible
+    pyenv global ansible
     pip install ansible
 fi
 echo ""
