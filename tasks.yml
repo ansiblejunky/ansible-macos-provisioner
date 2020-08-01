@@ -1,12 +1,5 @@
 
-- name: Python Development Environment - Install pyenv (python environment manager)
-  homebrew:
-    name: pyenv
-    state: present
-- name: Python Development Environment - Install pyenv (python environment manager)
-  homebrew:
-    name: pyenv-virtualenv
-    state: present
+
 - name: wget
   homebrew:
     name: wget
@@ -33,48 +26,51 @@
         state: present
 
 
-- name: JSON
-  block:
-    - name: jq - json processor https://stedolan.github.io/jq/
-      homebrew:
-        name: jq
-        state: present
 
-- name: Conference Tools
-  block:
-    - name: Webex Meetings
-      homebrew_cask:
-        name: webex-meetings
-        state: present
+- name: jq - json processor https://stedolan.github.io/jq/
+  homebrew:
+    name: jq
+    state: present
 
-- name: Slack
+
+# Conference and Chat Tools
+# --------------------------------------------------------
+- name: Conference Tools - Webex Meetings
+  homebrew_cask:
+    name: webex-meetings
+    state: present
+
+- name: Conference Tools - Zoom conference
+  homebrew_cask:
+    name: zoomus
+    state: present
+
+- name: Conference Tools - Slack
   homebrew_cask:
     name: slack
     state: present
     install_options: force
 
-- name: Microsoft Teams
+- name: Conference Tools - Microsoft Teams
   homebrew_cask:
     name: microsoft-teams
     state: present
 
-- name: Google Chat
+- name: Conference Tools - Google Chat
   homebrew_cask:
     name: google-chat
     state: present
 
-- name: Whatsapp
+- name: Conference Tools - Whatsapp
   homebrew_cask:
     name: whatsapp
     state: present
 
 
-- name: Java
-  block:
-    - name: jenv - manage separate java environments
-      homebrew:
-        name: jenv
-        state: present
+- name: jenv - manage separate java environments
+  homebrew:
+    name: jenv
+    state: present
 
 - name: java
   homebrew_cask:
@@ -284,8 +280,24 @@
   homebrew:
     name: docker-completion
     state: present
+- name: iterm2
+  homebrew_cask:
+    name: iterm2
+    state: present
+- name: Postman
+  homebrew_cask:
+    name: postman
+    state: present
 
-    
+- name: Google Chrome
+  homebrew_cask:
+    name: google-chrome
+    state: present
+- name: Google Chrome Driver (for automating browser tasks)
+  homebrew_cask:
+    name: chromedriver
+    state: present
+
 # NOTE: Note that after brew installs Docker, the docker command (symbolic link) is not available at /usr/local/bin. Running the Docker app for the first time creates this symbolic link.
 # install phantomjs - headless browser used for automation
 #brew install phantomjs

@@ -1,39 +1,43 @@
 # Ansible OSX Provisioner
 
+This repo helps provision a brand new or existing Mac. It uses some initial manual steps that cannot or have not been automated and then some initializing (to prepare a `pyenv` with `ansible` in a virtual environment using Python 3). This is necessary in order to run the final automated step of the `ansible` playbook that installs and configures your Mac with your favorite software and configurations. 
 
-## Notes
+Some basics before you begin to provision your system. This tool requires Ansible and Homebrew to perform the installations. Why these tools? Ansible is a beautiful automation software. Homebrew is the best package management software for Mac systems. These two are meant for each other when it comes to provisioning a Mac.  If I lost you already, don't worry about it. The tool installs all dependencies necessary for a beautiful easy automated installation. So kick back and relax.
 
-Steps:
+> NOTE: If you already have software installed on your system you should have Homebrew manage these installations. To do that, you simply need to install the software using Homebrew. Typically it will replace the existing installation for you. If not, you might want to try the following tool: https://github.com/exherb/homebrew-cask-replace
+
+
+## Step 1 - The Manual Steps
+
 - Launch System Prefs app
 	- Go to Trackpad
 	- Disable "Force Click and haptic feedback"
 - Authenticate in Mac App Store
 - Launch Safari app
-	- navigate to GitHub.com
-	- login to GitHub.com
-	- generate personal access token
+	- Navigate to GitHub.com
+	- Login to GitHub.com
+	- Generate personal access token
 - Launch Terminal app
-	- change default shell
-	   chsh -s /bin/bash
-	- run `git` to install x-tools
-	- Clone repo for osx-provisioner
+	- Change default shell
+	   `chsh -s /bin/bash`
+	- Run `git` to install x-tools
+	- Clone repo for this repo (ansible-osx-provisioner)
 		- `git clone <repo>`
 		- authenticate using username + personal-access-token
 	- Run `./initialize.sh` to prepare Mac with home-brew, pyenv, and install python virtualenv with ansible
 	- Run `ansible-playbook playbook.yml --ask-become-pass` to install software
 - Launch Google Chrome
-	- login and sync (this gets extensions, and current tab/window state from previous laptop)
-- Launch Duplicati app
-	- login and restore from backup
+	- Login and sync (this gets extensions, and current tab/window state from previous laptop)
+- Launch your backup software
+	- Login and restore from backup
 - Other things
-	- copy ssh keys from original laptop (maybe use bluetooth or ssh?)
+	- Copy ssh keys from original laptop (maybe use bluetooth or ssh?)
         - setup Yubikey
         - Test all conference tools to ensure they can share screens and mic works, etc. (this usually requires a lot of approvals for Mac security)
-	- REDHAT: Install Managed Software Center from Mojo to add VPN software, etc.
-        - Configure printer in SysPrefs
-        - Install VSCode extensions; configure Workspaces extension
+    - Configure printer in SysPrefs
+    - Install VSCode extensions; configure Workspaces extension
 
-TODO: migrate Itsycal preferences from one laptop to another
+- TODO: migrate Itsycal preferences from one laptop to another
 	- Copy/backup the following file from old laptop:
          cp ~/Library/Preferences/com.mowglii.ItsycalApp.plist <destination>
         - Run the following command to import the plist file (preferences)
@@ -43,29 +47,37 @@ TODO: migrate Itsycal preferences from one laptop to another
         - Configure screen saver to point to ~/Pictures/images
         - Customize left panel of Finder application (add favoritate locations)
 
-- Mac settings
-# Reference this webpage for details
-# https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/
-# System Preferences > Dock > Automatically hide and show the Dock:
-defaults write com.apple.dock autohide -bool true
+## Step 2 - Initialize
 
-TODO: install postman, and preferences and saved environments (export them and then import them)
-TODO: add iterm2 installation steps and handle custom settings
-brew cask install iterm2
+Run the following bash script to initialize your environment.
 
-TODO: installing virtualbox requires approval of software extension so it fails on first attempt
-TODO: Install google chrome and extensions
-TODO: Manage docked items automatically
- 
-TODO: remove pyenv pyenv-virtualenv from tasks.yml
-TODO: maybe ignore_errors: true in case a brew install fails 
+```shell
+./initialize.sh
+```
 
-## Yubikey Installation
+## Step 3 - Installation
+
+Now we are ready to use Ansible and Homebrew to perform the installation of our software. I would advise running the playbook in `check mode` for the first time to see what it might do.
+
+```shell
+ansible-playbook playbook --ask-become-pass --check-mode
+```
+
+
+## Step 4 - Red Hat Setup
+
+The following are specific to a Red Hat laptop.
+
+### Managed Software
+
+Install Managed Software Center from Mojo to add VPN software, etc. To login to Mojo, you will need to already have your token setup on your phone to get into the VPN to access the Mojo site.
+
+### Yubikey Installation
 
 - download Yubikey Manager tool using homebrew
 `brew cask install homebrew/cask-drivers/yubico-yubikey-manager`
 - start Yubikey Manager app
-- put Yubikey into Mac slot
+- put Yubikey device into Mac slot
 - app should recognize it and display icon and firmware info
 - select "Applications" from top
 - Slot 1 is for "short touch", Slot 2 is for "long touch" so you can setup 2 slots to manage 2 systems and out-of-the-box Yubikey configures slot 1 to work with their website.
@@ -86,49 +98,13 @@ TODO: maybe ignore_errors: true in case a brew install fails
 - You should get success on the sync and also testing it using the "TEST TOKEN" area on the bottom. 
 - You're done! Dang!
 
+## Laptop Skin
 
-##############################################################
-# Prerequisites
-#
-# We need the Xcode Developer Tools because it provides tools like git and gcc.
-# We will use the system provided Python installation to prepare
-# it with pip (python package manager) and Ansible (automation tool).
-# Using these tools we can automate the provisioning of our system.
-# Mac OSX comes with a package management software called easy_install
-# but this not the best. We will use the well known and preferred
-# tool called Homebrew for installing and upgrading ALL of our software
-# requirements. This is great because it will help us maintain our
-# installations in the future - e.g. we can upgrade all of our software
-# with one command. If you do not know about Homebrew, I suggest you learn
-# about it.
-##############################################################
-
-## What?
-So you just got a brand new Mac and you need all the good stuff to get it up and ready. Been there, done that. So let's not waist time searching around for the best software for your Mac. Just use my OSX-Provisioner tool and get that Mac ready within minutes. 
-
-Take a look at the various tools that are automatically installed. I try to provide notes or links so you have an understanding as to why they are the best solution for your daily needs. 
-
-Some basics before you begin to provision your system. This tool requires Ansible and Homebrew to perform the installations. Why these tools? Ansible is a beautiful automation software. Homebrew is the best package management software for Mac systems. These two are meant for each other when it comes to provisioning a Mac.  If I lost you already, don't worry about it. The tool installs all dependencies necessary for a beautiful easy automated installation. So kick back and relax.
-
-> NOTE: If you already have software installed on your system you should have Homebrew manage these installations. To do that, you simply need to install the software using Homebrew. Typically it will replace the existing installation for you. If not, you might want to try the following tool: https://github.com/exherb/homebrew-cask-replace
+If you really want to get fancy with your new laptop, I recommend to order a laptop [skin](http://www.skinit.com/).
 
 
-## Why?
+## Where to find software
 
-
-## How?
-```
-./start.sh
-```
-
-Lists software that is currently installed, and those that will be installed
-```
-./start.sh status
-```
-
-Want more? Have ideas for better tools?
-
-## Where?
 To find other homebrew software and formulae, use the following links.
 
 - http://brewformulas.org
@@ -136,19 +112,35 @@ To find other homebrew software and formulae, use the following links.
 
 For the best free Mac applications, look here: http://thriftmac.com
 
-## Extras
-If you really want to get fancy with your new laptop, order a laptop skin.
-http://www.skinit.com/
+## Mac settings
 
-NOTE: consider using https://github.com/square/maximum-awesome
-NOTE: for zsh shell lovers, consider https://github.com/robbyrussell/oh-my-zsh
-NOTE: consider the OSXC simple configuration tool for OS X (see below)
+To automate your specific Mac settings I recommend looking at this webpage for details.
 
-## Notes
+[Change Mac OS User Preferences via Command Line](https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/)
+
+For example:
+```shell
+# System Preferences > Dock > Automatically hide and show the Dock:
+defaults write com.apple.dock autohide -bool true
+```
+
+## Improvements
+
+- Automate postman preferences and saved environments (export them and then import them)
+- automate iterm2 preferences
+- installing virtualbox requires approval of software extension so it fails on first attempt
+- Automate google chrome preferences and extensions
+- Automate docked items
+- maybe ignore_errors: true in case a brew install fails 
+
+## Notable Mac commandline tools
+
+The following tools are some fun and useful tools I have found. Some come with the Mac OS and some can be installed.
 
 ### dot_clean
-Mac file systems and FAT32. You might notice when working with FAT32 file systems (often on USB drives) that there are files created with a dot-underscore prefix (._). These are created in order to handle the different attributes that are managed by the different file systems. You can clean them using the not-so-famous 'dot_clean' tool that comes with the Mac OSX. 
-```
+Mac file systems and FAT32. You might notice when working with FAT32 file systems (often on USB drives) that there are files created with a dot-underscore prefix (._). These are created in order to handle the different attributes that are managed by the different file systems. You can clean them using the not-so-famous 'dot_clean' tool that comes with the Mac OSX.
+
+```shell
 $ cd /Volumes/USBDRIVE/
 $ dot_clean -m .
 ```
