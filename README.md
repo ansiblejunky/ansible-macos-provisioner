@@ -9,10 +9,14 @@ Some basics before you begin to provision your system. This tool requires Ansibl
 
 ## Step 1 - The Manual Steps
 
-- Launch System Prefs app
+We need some initial manual steps because we cannot run Ansible without some basics and we definitely do **not** want to install Ansible in the system Python that comes with Mac OS!  So let's prepare things the right way.
+
+- (optional) Launch System Prefs app
 	- Go to Trackpad
 	- Disable "Force Click and haptic feedback"
-- Authenticate in Mac App Store
+- Launch Mac App Store
+	- Authenticate in Mac App Store
+	- This is useful to automate installation of your Mac App Store purchases
 - Launch Safari app
 	- Navigate to GitHub.com
 	- Login to GitHub.com
@@ -36,16 +40,6 @@ Some basics before you begin to provision your system. This tool requires Ansibl
         - Test all conference tools to ensure they can share screens and mic works, etc. (this usually requires a lot of approvals for Mac security)
     - Configure printer in SysPrefs
     - Install VSCode extensions; configure Workspaces extension
-
-- TODO: migrate Itsycal preferences from one laptop to another
-	- Copy/backup the following file from old laptop:
-         cp ~/Library/Preferences/com.mowglii.ItsycalApp.plist <destination>
-        - Run the following command to import the plist file (preferences)
-         defaults import com.mowglii.ItsycalApp /Volumes/jwadleig/Library/Preferences/com.mowglii.ItsycalApp.plist
-        - Disable clock in menubar from SysPref
-        - Configure Slack (add workspaces)
-        - Configure screen saver to point to ~/Pictures/images
-        - Customize left panel of Finder application (add favoritate locations)
 
 ## Step 2 - Initialize
 
@@ -132,6 +126,15 @@ defaults write com.apple.dock autohide -bool true
 - Automate google chrome preferences and extensions
 - Automate docked items
 - maybe ignore_errors: true in case a brew install fails 
+- Migrate Itsycal preferences from one laptop to another
+	- Copy/backup the following file from old laptop:
+         cp ~/Library/Preferences/com.mowglii.ItsycalApp.plist <destination>
+	- Run the following command to import the plist file (preferences)
+		defaults import com.mowglii.ItsycalApp /Volumes/jwadleig/Library/Preferences/com.mowglii.ItsycalApp.plist
+	- Disable clock in menubar from SysPref
+	- Configure Slack (add workspaces)
+	- Configure screen saver to point to ~/Pictures/images
+	- Customize left panel of Finder application (add favoritate locations)
 
 ## Notable Mac commandline tools
 
