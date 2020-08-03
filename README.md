@@ -7,7 +7,7 @@ Some basics before you begin to provision your system. This tool requires Ansibl
 > NOTE: If you already have software installed on your system you should have Homebrew manage these installations. To do that, you simply need to install the software using Homebrew. Typically it will replace the existing installation for you. If not, you might want to try the following tool: https://github.com/exherb/homebrew-cask-replace
 
 
-## Step 1 - The Manual Steps
+## Installation
 
 We need some initial manual steps because we cannot run Ansible without some basics and we definitely do **not** want to install Ansible in the system Python that comes with Mac OS!  So let's prepare things the right way.
 
@@ -41,24 +41,7 @@ We need some initial manual steps because we cannot run Ansible without some bas
     - Configure printer in SysPrefs
     - Install VSCode extensions; configure Workspaces extension
 
-## Step 2 - Initialize
-
-Run the following bash script to initialize your environment.
-
-```shell
-./initialize.sh
-```
-
-## Step 3 - Installation
-
-Now we are ready to use Ansible and Homebrew to perform the installation of our software. I would advise running the playbook in `check mode` for the first time to see what it might do.
-
-```shell
-ansible-playbook playbook --ask-become-pass --check-mode
-```
-
-
-## Step 4 - Red Hat Setup
+## Red Hat Setup
 
 The following are specific to a Red Hat laptop.
 
