@@ -5,9 +5,6 @@
   gather_facts: false
 
   vars:
-    user_home_directory: "/Users/{{ ansible_user }}"
-    homebrew_packages:
-      - git
     git_global_configuration:
       user_name: John Wadleigh
       user_email: wadleigh.john@gmail.com
@@ -32,4 +29,10 @@
           - shell: "git config --global user.email {{ git_global_configuration.user_email }}"
 
   tasks:
-    - include_tasks: tasks.yml
+    - include_tasks: tasks/general.yml
+    - include_tasks: tasks/chat.yml
+    - include_tasks: tasks/aws.yml
+    - include_tasks: tasks/office.yml
+    - include_tasks: tasks/java.yml
+    - include_tasks: tasks/media.yml
+    - include_tasks: tasks/finder.yml

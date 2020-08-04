@@ -1,0 +1,11 @@
+# Amazon Web Services (AWS)
+# --------------------------------------------------------
+
+- name: awscli - aws command line interface https://github.com/aws/aws-cli
+  homebrew:
+    name: awscli
+    state: present
+- name: awsebcli - aws elastic beanstalk cli https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html
+  homebrew:
+    name: awsebcli
+    state: present

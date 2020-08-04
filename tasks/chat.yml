@@ -1,0 +1,32 @@
+# Conference and Chat Tools
+# --------------------------------------------------------
+- name: Conference Tools - Webex Meetings
+  homebrew_cask:
+    name: webex-meetings
+    state: present
+
+- name: Conference Tools - Zoom conference
+  homebrew_cask:
+    name: zoomus
+    state: present
+
+- name: Conference Tools - Slack
+  homebrew_cask:
+    name: slack
+    state: present
+    install_options: force
+
+- name: Conference Tools - Microsoft Teams
+  homebrew_cask:
+    name: microsoft-teams
+    state: present
+
+- name: Conference Tools - Google Chat
+  homebrew_cask:
+    name: google-chat
+    state: present
+
+- name: Conference Tools - Whatsapp
+  homebrew_cask:
+    name: whatsapp
+    state: present

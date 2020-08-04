@@ -1,0 +1,16 @@
+# Java Tools
+# --------------------------------------------------------
+- name: jenv - manage separate java environments
+  homebrew:
+    name: jenv
+    state: present
+
+- name: java
+  homebrew_cask:
+    name: java
+    state: present
+
+# - name: maven
+#   homebrew:
+#     name: maven
+#     state: present

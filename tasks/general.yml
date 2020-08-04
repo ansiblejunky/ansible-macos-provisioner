@@ -1,0 +1,173 @@
+
+
+- name: wget
+  homebrew:
+    name: wget
+    state: present
+
+- name: httpie - better alternative to curl and wget https://httpie.org/
+  homebrew:
+    name: httpie
+    state: present
+
+- name: bash-completion - handles completion of many commandline tools
+  homebrew:
+    name: bash-completion
+    state: present
+
+- name: jq - json processor https://stedolan.github.io/jq/
+  homebrew:
+    name: jq
+    state: present
+
+
+# Python App Development Using Kivy (for iOS, OS X, Android, etc) https://kivy.org
+# --------------------------------------------------------
+# prerequisites
+# brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer gstreamer
+# install Cython and Kivy using pip
+# pip install Cython==0.26.1
+# pip install https://github.com/kivy/kivy/archive/master.zip
+
+
+- name: Download manager
+  homebrew_cask:
+    name: leech
+    state: present
+
+- name: Archive manager
+  homebrew_cask:
+    name: izip
+    state: present
+
+- name: Disk image burner - https://www.balena.io/etcher/
+  homebrew_cask:
+    name: balenaetcher
+    state: present
+
+- name: Password manager
+  homebrew_cask:
+    name: macpass
+    state: present
+
+- name: Database manager - beekeeper - open source sql editor - https://www.beekeeperstudio.io/
+  homebrew_cask:
+    name: beekeeper-studio
+    state: present
+
+
+- name: Mac App Store - Management Tool - https://github.com/mas-cli/mas
+  homebrew:
+    name: mas
+    state: present
+- name: Install Magnet from Mac App Store
+  shell: mas install 441258766
+  register: results
+  changed_when: "'already installed' not in results.stdout"
+- name: Install Monosnap from Mac App Store
+  shell: mas install 540348655
+  register: results
+  changed_when: "'already installed' not in results.stdout"
+- name: Install CopyClip from Mac App Store
+  shell: mas install 595191960
+  register: results
+  changed_when: "'already installed' not in results.stdout"
+
+- name: Application Management - appcleaner
+  homebrew_cask:
+    name: appcleaner
+    state: present
+
+# Extras
+# --------------------------------------------------------
+# TODO: Configure itsycal
+# TODO: Remove system clock in menu bar
+- name: Calendar Menu Bar - http://www.mowglii.com/itsycal/
+  homebrew_cask:
+    name: itsycal
+    state: present
+
+- name: keyboard-lock to allow cleaning your keyboard
+  homebrew_cask:
+    name: keyboard-lock
+    state: present
+
+# Allows automation of configuring your docked items on your Mac
+- name: dockutil - Manage OSX Dock Items - https://github.com/kcrawford/dockutil
+  homebrew:
+    name: dockutil
+    state: present
+
+- name: tree
+  homebrew:
+    name: tree
+    state: present
+    
+- name: Backup - duplicati
+  homebrew_cask:
+    name: duplicati
+    state: present
+
+# DevOps
+# --------------------------------------------------------
+- name: IDE Tools - Visual Studio Code
+  homebrew_cask:
+    name: visual-studio-code
+    state: present
+- name: virtualbox
+  homebrew_cask:
+    name: virtualbox
+    state: present
+- name: vagrant
+  homebrew_cask:
+    name: vagrant
+    state: present
+- name: vagrant-completion
+  homebrew:
+    name: vagrant-completion
+    state: present
+- name: install vagrant plugins
+  shell: vagrant plugin install vagrant-hostmanager vagrant-list vagrant-registration vagrant-scp vagrant-vbguest
+- name: packer
+  homebrew:
+    name: packer
+    state: present
+- name: packer-completion
+  homebrew:
+    name: packer-completion
+    state: present
+# NOTE: Note that after brew installs Docker, the docker command (symbolic link)
+# is not available at /usr/local/bin. Running the Docker app for the first time creates this symbolic link.
+- name: docker
+  homebrew_cask:
+    name: docker
+    state: present
+- name: docker-completion
+  homebrew:
+    name: docker-completion
+    state: present
+- name: iterm2
+  homebrew_cask:
+    name: iterm2
+    state: present
+- name: Postman
+  homebrew_cask:
+    name: postman
+    state: present
+# NOTE: Probably better to create docker container with Gogs running
+# https://hub.docker.com/r/gogs/gogs/
+
+- name: Google Chrome
+  homebrew_cask:
+    name: google-chrome
+    state: present
+- name: Google Chrome Driver (for automating browser tasks)
+  homebrew_cask:
+    name: chromedriver
+    state: present
+
+# Network Scanner
+# --------------------------------------------------------
+#brew cask install angry-ip-scanner
+
+
