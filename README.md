@@ -132,14 +132,14 @@ $ dot_clean -m .
 ```
 
 ### ditto
-https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/ditto.1.html
+https://ss64.com/osx/ditto.html
 
 ### say
-https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/say.1.html
+https://ss64.com/osx/say.html
 https://pypi.python.org/pypi/SpeechRecognition/
 
 ### caffeinate
-https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html
+https://ss64.com/osx/caffeinate.html
 
 ### banner
 banner -w [the width of the banner in pixels] [your message]
