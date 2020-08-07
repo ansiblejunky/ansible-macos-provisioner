@@ -72,7 +72,7 @@ then
     echo -e "Found ansible virtual environment: " $OSXP_PYENV_VERSION
 else
     echo -e "pyevn was not initialized ... attempting installation\n"
-    pyenv install -s 3.8.2
+    pyenv install --skip-existing 3.8.2
     pyenv global 3.8.2
     pyenv virtualenv ansible
     pyenv global ansible
