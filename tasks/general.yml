@@ -55,6 +55,10 @@
     name: beekeeper-studio
     state: present
 
+- name: Backup Software
+  homebrew_cask:
+    name: carbon-copy-cloner
+    state: present
 
 - name: Mac App Store - Management Tool - https://github.com/mas-cli/mas
   homebrew:
