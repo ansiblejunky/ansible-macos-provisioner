@@ -29,6 +29,13 @@
 # pip install Cython==0.26.1
 # pip install https://github.com/kivy/kivy/archive/master.zip
 
+# Python Development and Testing
+# https://docs.python-guide.org/writing/tests/
+
+- name: tox - https://tox.readthedocs.io/en/latest/
+  homebrew:
+    name: tox
+    state: present
 
 - name: Download manager
   homebrew_cask:
