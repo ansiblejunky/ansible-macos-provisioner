@@ -181,4 +181,9 @@
 # --------------------------------------------------------
 #brew cask install angry-ip-scanner
 
-
+# Ansible module required software
+#---------------------------------------------------------
+- name: ansible unarchive module needs gnu-tar
+  homebrew:
+    name: gnu-tar
+    state: present
