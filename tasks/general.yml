@@ -187,3 +187,12 @@
   homebrew:
     name: gnu-tar
     state: present
+
+
+# Support NTFS mounted drives
+#---------------------------------------------------------
+- name: Install Tuxera NTFS software
+  homebrew_cask:
+    name: tuxera-ntfs
+    state: present
+
