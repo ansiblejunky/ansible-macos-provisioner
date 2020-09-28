@@ -109,6 +109,7 @@ defaults write com.apple.dock autohide -bool true
 - Automate google chrome preferences and extensions
 - Automate docked items
 - maybe ignore_errors: true in case a brew install fails 
+- Automate the activation of Tuxera NTFS software
 - Migrate Itsycal preferences from one laptop to another
 	- Copy/backup the following file from old laptop:
          cp ~/Library/Preferences/com.mowglii.ItsycalApp.plist <destination>
