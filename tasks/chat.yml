@@ -7,7 +7,7 @@
 
 - name: Conference Tools - Zoom conference
   homebrew_cask:
-    name: zoomus
+    name: zoom
     state: present
 
 - name: Conference Tools - Slack
