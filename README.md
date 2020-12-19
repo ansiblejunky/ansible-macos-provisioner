@@ -149,6 +149,14 @@ banner -w [the width of the banner in pixels] [your message]
 Provide copying and pasting to the pasteboard (the Clip-board) from command line
 http://osxdaily.com/2007/03/05/manipulating-the-clipboard-from-the-command-line/
 
+### Multiple File Renamer
+You may need to rename multiple files at the same time, to conform to some naming convention. 
+
+Option #1: Use the Finder and this [blog](https://tidbits.com/2018/06/28/macos-hidden-treasures-batch-rename-items-in-the-finder/)
+
+Option #2: brew install rename
+http://plasmasturm.org/code/rename/
+
 ## Author
 
 This was written by [John Wadleigh](http://ansiblejunky.com/), based on my personal need to automate everything.
