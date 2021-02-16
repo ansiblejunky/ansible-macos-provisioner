@@ -40,7 +40,11 @@ We need some initial manual steps because we cannot run Ansible without some bas
   - Configure printer in SysPrefs
   - Install VSCode extensions; configure Workspaces extension
     - Extensions
-    - Settings (WrapTabs, Workbench Decorations: Color, Workbench Decorations: Badges)
+    - Settings:
+      - WrapTabs
+      - Workbench Decorations: Color
+      - Workbench Decorations: Badges
+      - Workbench › Tree: Indent = 30
 
 ## Red Hat Setup
 
@@ -121,8 +125,40 @@ defaults write com.apple.dock autohide -bool true
     `defaults import com.mowglii.ItsycalApp /Volumes/jwadleig/Library/Preferences/com.mowglii.ItsycalApp.plist`
   - Disable clock in menubar from SysPref
 - Configure Slack (add workspaces)
-- Configure screen saver to point to ~/Pictures/images
+- Configure screen saver and wallpaper to point to `Pictures/_wallpapers_`
 - Customize left panel of Finder application (add favoritate locations)
+- startup windows VM and checkout if my visual studio application works at all and decide what to do with all of this stuff!? push to GitHub?
+Projects/cleanup/siebel-visual-basic-projects
+- Pages (verify book opens)
+- GarageBand (transfer files)
+- Register the Carbon Copy Cloner software
+- Register Tuxera NTFS (for windows USB drives)
+- Automate install of other stuff
+  - Install Keka as archive utility (or izip)
+  - Install and run Malwarebytes
+  - Install and run Bitdefender Virus Scanner
+  - Install and register Telegram
+  - Install and register WhatsApp
+  - iBooks Author - verify books open; Documents/Books/...
+  - BookWright (Blurb application)
+  - Install and register easyHDR3
+  - Install and register Panorama Maker
+  - Install and register [Photomatix Pro 6](https://www.hdrsoft.com/download/photomatix-pro.html)
+  - Amazon Music
+  - HP Easy Scan (verify scanner)
+  - XnConvert (convert multiple images): `brew cask install xnconvert`
+  - [Balena Etcher](https://www.balena.io/etcher/) disk burning tool: `brew cask install balenaetcher`
+  - Install wireshark
+  - Install tmux
+  - Install nmap
+  - Install ruby and rbenv to create ruby environment to manage github pages website using jekyll
+  - Install dbeaver-community as DB manager tool
+  - Install and configure keepassx using Brew `brew install keepassx`
+  - Install gimp as image editor tool
+- From App Store
+  - Free MP4 Converter
+  - Night Sky
+  - Loopback (for external monitor sound)
 
 ## Notable Mac commandline tools
 
