@@ -6,40 +6,41 @@ Some basics before you begin to provision your system. This tool requires Ansibl
 
 > NOTE: If you already have software installed on your system you should have Homebrew manage these installations. To do that, you simply need to install the software using Homebrew. Typically it will replace the existing installation for you. If not, you might want to try the following tool: https://github.com/exherb/homebrew-cask-replace
 
-
 ## Installation
 
 We need some initial manual steps because we cannot run Ansible without some basics and we definitely do **not** want to install Ansible in the system Python that comes with Mac OS!  So let's prepare things the right way.
 
 - (optional) Launch System Prefs app
-	- Go to Trackpad
-	- Disable "Force Click and haptic feedback"
+  - Go to Trackpad
+  - Disable "Force Click and haptic feedback"
 - Launch Mac App Store
-	- Authenticate in Mac App Store
-	- This is useful to automate installation of your Mac App Store purchases
+  - NOTE: This is useful to automate installation of your Mac App Store purchases
+  - Authenticate in Mac App Store
 - Launch Safari app
-	- Navigate to GitHub.com
-	- Login to GitHub.com
-	- Generate personal access token
+  - NOTE: We don't have Google Chrome installed yet, so we use what we have. We will automate the install of our favorite browser using Ansible later.
+  - Navigate to GitHub.com
+  - Login to GitHub.com
+  - Generate personal access token
 - Launch Terminal app
-	- Change default shell
-	   `chsh -s /bin/bash`
-	- Run `git` to install x-tools
-	- Clone repo for this repo (ansible-osx-provisioner)
-		- `git clone <repo>`
-		- authenticate using username + personal-access-token
-	- Run `./initialize.sh` to prepare Mac with home-brew, pyenv, and install python virtualenv with ansible
-	- Run `ansible-playbook playbook.yml --ask-become-pass` to install software
+  - Change default shell: `chsh -s /bin/bash`
+  - Run `git` to install x-tools
+  - Clone repo for this repo (ansible-osx-provisioner)
+    - `git clone <repo>`
+    - authenticate using username + personal-access-token
+  - Run `./initialize.sh` to prepare Mac with home-brew, pyenv, and install python virtualenv with ansible
+  - Run `ansible-playbook playbook.yml --ask-become-pass` to install software
 - Launch Google Chrome
-	- Login and sync (this gets extensions, and current tab/window state from previous laptop)
+  - Login and sync (this gets extensions, and current tab/window state from previous laptop)
 - Launch your backup software
-	- Login and restore from backup
+  - Login and restore from backup? I prefer to auto install from fresh and only restore documents, etc.
 - Other things
-	- Copy ssh keys from original laptop (maybe use bluetooth or ssh?)
-        - setup Yubikey
-        - Test all conference tools to ensure they can share screens and mic works, etc. (this usually requires a lot of approvals for Mac security)
-    - Configure printer in SysPrefs
-    - Install VSCode extensions; configure Workspaces extension
+  - Copy ssh keys from original laptop (maybe use bluetooth or ssh?)
+  - Setup Yubikey (see instructions below)
+  - Test all conference tools to ensure they can share screens and mic works, etc. (this usually requires a lot of approvals for Mac security)
+  - Configure printer in SysPrefs
+  - Install VSCode extensions; configure Workspaces extension
+    - Extensions
+    - Settings (WrapTabs, Workbench Decorations: Color, Workbench Decorations: Badges)
 
 ## Red Hat Setup
 
@@ -51,14 +52,17 @@ Install Managed Software Center from Mojo to add VPN software, etc. To login to 
 
 ### Yubikey Installation
 
-- download Yubikey Manager tool using homebrew
-`brew cask install homebrew/cask-drivers/yubico-yubikey-manager`
+Use the following steps to install and configure your Yubikey on your new Mac.
+
+- download Yubikey Manager tool using homebrew: `brew cask install homebrew/cask-drivers/yubico-yubikey-manager`
 - start Yubikey Manager app
 - put Yubikey device into Mac slot
 - app should recognize it and display icon and firmware info
 - select "Applications" from top
 - Slot 1 is for "short touch", Slot 2 is for "long touch" so you can setup 2 slots to manage 2 systems and out-of-the-box Yubikey configures slot 1 to work with their website.
-- I don't care about connecting to Yubico and I prefer having the short touch mechanism, so I did the following...
+
+I don't care about connecting to Yubico and I prefer having the short touch mechanism, so I did the following...
+
 - select "Delete" on slot 1 to remove the existing configuration
 - select "Configure" on slot 1
 - select "OATH-HOTP" option
@@ -79,7 +83,6 @@ Install Managed Software Center from Mojo to add VPN software, etc. To login to 
 
 If you really want to get fancy with your new laptop, I recommend to order a laptop [skin](http://www.skinit.com/).
 
-
 ## Where to find software
 
 To find other homebrew software and formulae, use the following links.
@@ -96,6 +99,7 @@ To automate your specific Mac settings I recommend looking at this webpage for d
 [Change Mac OS User Preferences via Command Line](https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/)
 
 For example:
+
 ```shell
 # System Preferences > Dock > Automatically hide and show the Dock:
 defaults write com.apple.dock autohide -bool true
@@ -104,48 +108,54 @@ defaults write com.apple.dock autohide -bool true
 ## Improvements
 
 - Automate postman preferences and saved environments (export them and then import them)
-- automate iterm2 preferences
-- installing virtualbox requires approval of software extension so it fails on first attempt
+- Automate iterm2 preferences
+- Installing virtualbox requires approval of software extension so it fails on first attempt
 - Automate google chrome preferences and extensions
 - Automate docked items
-- maybe ignore_errors: true in case a brew install fails 
+- Maybe ignore_errors: true in case a brew install fails 
 - Automate the activation of Tuxera NTFS software
 - Migrate Itsycal preferences from one laptop to another
-	- Copy/backup the following file from old laptop:
-         cp ~/Library/Preferences/com.mowglii.ItsycalApp.plist <destination>
-	- Run the following command to import the plist file (preferences)
-		defaults import com.mowglii.ItsycalApp /Volumes/jwadleig/Library/Preferences/com.mowglii.ItsycalApp.plist
-	- Disable clock in menubar from SysPref
-	- Configure Slack (add workspaces)
-	- Configure screen saver to point to ~/Pictures/images
-	- Customize left panel of Finder application (add favoritate locations)
+  - Copy/backup the following file from old laptop:  
+    `cp ~/Library/Preferences/com.mowglii.ItsycalApp.plist <destination>`
+  - Run the following command to import the plist file (preferences)  
+    `defaults import com.mowglii.ItsycalApp /Volumes/jwadleig/Library/Preferences/com.mowglii.ItsycalApp.plist`
+  - Disable clock in menubar from SysPref
+- Configure Slack (add workspaces)
+- Configure screen saver to point to ~/Pictures/images
+- Customize left panel of Finder application (add favoritate locations)
 
 ## Notable Mac commandline tools
 
 The following tools are some fun and useful tools I have found. Some come with the Mac OS and some can be installed.
 
 ### dot_clean
+
 Mac file systems and FAT32. You might notice when working with FAT32 file systems (often on USB drives) that there are files created with a dot-underscore prefix (._). These are created in order to handle the different attributes that are managed by the different file systems. You can clean them using the not-so-famous 'dot_clean' tool that comes with the Mac OSX.
 
 ```shell
-$ cd /Volumes/USBDRIVE/
-$ dot_clean -m .
+cd /Volumes/USBDRIVE/
+dot_clean -m .
 ```
 
 ### ditto
+
 https://ss64.com/osx/ditto.html
 
 ### say
+
 https://ss64.com/osx/say.html
 https://pypi.python.org/pypi/SpeechRecognition/
 
 ### caffeinate
+
 https://ss64.com/osx/caffeinate.html
 
 ### banner
+
 banner -w [the width of the banner in pixels] [your message]
 
 ### pbcopy and pbpaste
+
 Provide copying and pasting to the pasteboard (the Clip-board) from command line
 http://osxdaily.com/2007/03/05/manipulating-the-clipboard-from-the-command-line/
 
