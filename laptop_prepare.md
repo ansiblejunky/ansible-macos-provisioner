@@ -23,14 +23,7 @@ Projects/cleanup/siebel-visual-basic-projects
     - BookWright (Blurb application)
     - Pages (verify book opens)
     - easyHDR3
-        https://www.easyhdr.com/download-full/?email=john_wadleigh_AT_yahoo.com&pid=470231355
-        Registered e-mail: .. john_wadleigh@yahoo.com
-        Serial number: ...... qb46-p4nj-kxpk-d0qv-comm-eh3x
-        Key: ................ 7kxkm5pe
     - Panorama Maker
-        http://www.arcsoft.com/%2Fproduct%2Fmac.html
-        Licensed Email: john_wadleigh@yahoo.com 
-        Activation Code:MMKMZZ3TVY8T9FP7MKVTY65G5PES22M32DE6E6UF7HEKQX947WKJDJ9J5SD
     - Photomatix Pro 6
         https://www.hdrsoft.com/download/photomatix-pro.html
     - Amazon Music
