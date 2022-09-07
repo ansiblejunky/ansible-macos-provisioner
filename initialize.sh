@@ -67,13 +67,16 @@ brew install pyenv
 brew install pyenv-virtualenv
 
 OSXP_PYENV_VERSION="$(pyenv version-name)"
-if [[ "$OSXP_PYENV_VERSIOPN" == "ansible" ]]
+if [[ "$OSXP_PYENV_VERSION" == "ansible" ]]
 then
     echo -e "Found ansible virtual environment: " $OSXP_PYENV_VERSION
 else
-    echo -e "pyevn was not initialized ... attempting installation\n"
-    pyenv install --skip-existing 3.8.2
-    pyenv global 3.8.2
+    echo -e "`pyenv` was not initialized ... attempting that now\n"
+    # Install the latest version of python that is available
+    pyenv install --skip-existing $(pyenv install --list | grep --extended-regexp "^\s*[0-9][0-9.]*[0-9]\s*$" | tail -1)
+    # Set the python version as the global default
+    pyenv global $(pyenv install --list | grep --extended-regexp "^\s*[0-9][0-9.]*[0-9]\s*$" | tail -1)
+    # Create virtual environment for our ansible tools
     pyenv virtualenv ansible
     pyenv global ansible
     pip install ansible
