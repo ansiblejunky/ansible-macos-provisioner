@@ -31,7 +31,7 @@ We first need to perform some manual steps to prepare for automation.
 Time to automate the installation.
 
 - Clone this repo and authenticate using `username` and `personal-access-token`
-  - `git clone https://github.com/ansiblejunky/ansible-osx-provisioner.git`
+  - `git clone https://github.com/ansiblejunky/ansible-macos-provisioner.git`
 - Ensure files in the [data folder](data/) are accurate for your environment
 - Run `./initialize.sh` to initialize your Mac
   - We cannot run Ansible without some basics
@@ -160,7 +160,7 @@ The following tools are some fun and useful tools I have found. Some come with t
 
 ### dot_clean
 
-Mac file systems and FAT32. You might notice when working with FAT32 file systems (often on USB drives) that there are files created with a dot-underscore prefix (._). These are created in order to handle the different attributes that are managed by the different file systems. You can clean them using the not-so-famous 'dot_clean' tool that comes with the Mac OSX.
+Mac file systems and FAT32. You might notice when working with FAT32 file systems (often on USB drives) that there are files created with a dot-underscore prefix (._). These are created in order to handle the different attributes that are managed by the different file systems. You can clean them using the not-so-famous 'dot_clean' tool that comes with the macOS.
 
 ```shell
 cd /Volumes/USBDRIVE/
