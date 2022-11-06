@@ -83,9 +83,13 @@ else
 fi
 echo ""
 
-cp files/.bash_profile ~/.bash_profile
+# Bash Profile
+cp data/.bash_profile ~/.bash_profile
 chsh -s /bin/bash
 source ~/.bash_profile
+
+# SSH Configuration
+cp data/ssh.config ~/.ssh/config
 
 echo ""
 echo "Success"

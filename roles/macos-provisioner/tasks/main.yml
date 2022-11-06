@@ -1,0 +1,10 @@
+---
+- name: Prepare the system
+  ansible.builtin.include_tasks:
+    file: prepare.yml
+  tags: always
+
+- name: Install software
+  ansible.builtin.include_tasks:
+    file: install.yml
+  tags: always

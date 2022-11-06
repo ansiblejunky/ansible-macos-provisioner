@@ -1,0 +1,107 @@
+---
+software_mac_app_store:
+  - 1270075435 # Strongbox from Mac App Store as Password Manager https://strongboxsafe.com/
+  - 441258766 # Magnet
+  - 540348655 # Monosnap
+  - 595191960 # CopyClip
+
+software_homebrew_cask:
+  # General Tools
+  - homebrew/cask/leech # Download Manager
+  - homebrew/cask/izip # Archive manager
+  - homebrew/cask/balenaetcher # Disk image burner - https://www.balena.io/etcher/
+  - homebrew/cask/beekeeper-studio # Database manager - beekeeper - open source sql editor - https://www.beekeeperstudio.io/
+  - homebrew/cask/carbon-copy-cloner # Backup Software - carbon copy cloner
+  #- homebrew/cask/duplicati # Backup Software - duplicati
+  - homebrew/cask/appcleaner # Application Management - appcleaner
+  #- homebrew/cask/itsycal # Calendar Menu Bar - http://www.mowglii.com/itsycal/
+  - keyboard-lock # keyboard-lock to allow cleaning your keyboard
+  - homebrew/cask/iterm2 # Terminal Manager
+  - homebrew/cask/postman # Postman
+  - homebrew/cask/google-chrome # Google Chrome Browser
+  - homebrew/cask/chromedriver # Google Chrome Driver (for automating browser tasks)
+  - homebrew/cask/brave-browser # Brave Browser
+  - homebrew/cask/tuxera-ntfs # Tuxera NTFS software to support NTFS mounted drives
+  - homebrew/cask/netnewswire # Net News Feeder
+  - homebrew/cask/visual-studio-code # Visual Studio Code
+  - homebrew/cask/virtualbox
+  - homebrew/cask/vagrant
+  - homebrew/cask/dbeaver-community # open source database client https://dbeaver.io/download/
+  # Container Engines
+  - homebrew/cask/docker
+  - homebrew/cask/podman-desktop
+  # Meeting Tools
+  - homebrew/cask/webex-meetings
+  - homebrew/cask/zoom
+  - homebrew/cask/slack
+  - homebrew/cask/microsoft-teams
+  - homebrew/cask/google-chat
+  - homebrew/cask/whatsapp
+  # Media (video/music) management tools
+  - homebrew/cask/handbrake
+  - homebrew/cask/vlc
+  - homebrew/cask/spotify
+  # Office (document) management tools
+  - homebrew/cask/libreoffice # open source office suite
+  - homebrew/cask/calibre # epub/pdf reader
+  # Network management
+  - angry-ip-scanner # https://angryip.org/
+
+software_homebrew_formulae:
+  # Basic Developer Tools
+  - wget
+  - httpie # better alternative to curl and wget https://httpie.org/
+  - jq # json processor https://stedolan.github.io/jq/
+  - yq # yaml processor https://mikefarah.gitbook.io/yq/
+  - bash-completion # handles completion of many commandline tools
+  - tox # https://tox.readthedocs.io/en/latest/
+  - tree
+  - gnu-tar # required for Ansible unarchive module
+  - gnu-sed # required for Ansible Automation Platform installer
+  - gs # Ghostscript (for merging pdf files)
+  # Supporting Tools
+  - vagrant-completion
+  - packer
+  - packer-completion
+  - docker-completion
+  - awscli # Amazon AWS command line interface https://github.com/aws/aws-cli
+  - awsebcli # Amazon AWS elastic beanstalk cli https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html
+  # Media (video/music) management tools
+  - libdvdcss # Handbrake dependency
+  - ffmpeg
+  - youtube-dl
+  - pandoc # document converter - http://pandoc.org/
+
+vagrant_plugins:
+  - vagrant-hostmanager
+  - vagrant-list
+  - vagrant-registration
+  - vagrant-scp
+  - vagrant-vbguest
+
+finder_folders:
+  - ~/Projects
+
+finder_sidebar:
+  - Projects file:///Users/jwadleig/Projects
+
+finder_shortcuts:
+  # pdfconvert - convert documents to pdf using Libre Office
+  # https://ask.libreoffice.org/en/question/12084/how-to-convert-documents-to-pdf-on-osx/
+  - dest: /usr/local/bin/pdfconvert
+    content: |
+      #!/bin/bash
+      /Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf "\$@"
+    mode: a+x
+
+finder_links:
+  # pdfmerge - merge pdf files (example: pdfmerge <merged/file> <1.pdf> <2.pdf> <*.pdf> ...)
+  # http://gotofritz.net/blog/howto/joining-pdf-files-in-os-x-from-the-command-line/
+  - src: '/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+    dest: '/usr/local/bin/pdfmerge'
+    mode: a+x
+
+system_prefs:
+  - domain: com.apple.dock
+    key: autohide
+    value: '-bool true'

@@ -1,0 +1,7 @@
+---
+git_user_name: John Wadleigh
+git_user_email: wadleigh.john@gmail.com
+git_excludes:
+    - ".DS_Store"
+
+software_mac_app_store: []

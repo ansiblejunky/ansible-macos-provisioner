@@ -1,38 +1,26 @@
 ---
-- name: Provision Mac OSX
-  hosts: localhost
-  connection: local
+- name: Provision macOS
+  hosts: all
   gather_facts: false
 
-  vars:
-    git_global_configuration:
-      user_name: John Wadleigh
-      user_email: wadleigh.john@gmail.com
-      excludes:
-        - ".DS_Store"
-
-  pre_tasks:
-    - name: Update homebrew to latest version
-      homebrew:
-        update_homebrew: yes
-    - name: Git
-      block:
-          - name: Install git - we will use the latest git instead of the Apple git (from Xcode)
-            homebrew:
-              name: git
-              state: present
-          - name: Install git-flow
-            homebrew:
-              name: git-flow
-              state: present
-          - shell: 'git config --global user.name {{ git_global_configuration.user_name }}'
-          - shell: "git config --global user.email {{ git_global_configuration.user_email }}"
-
   tasks:
-    - include_tasks: tasks/general.yml
-    - include_tasks: tasks/chat.yml
-    - include_tasks: tasks/aws.yml
-    - include_tasks: tasks/office.yml
-    - include_tasks: tasks/java.yml
-    - include_tasks: tasks/media.yml
-    - include_tasks: tasks/finder.yml
+
+  - name: Inform user that automation is starting
+    community.general.say:
+      msg: 'Starting Ansible Automation'
+      voice: Samantha
+
+  - name: Include your list of software
+    ansible.builtin.include_vars:
+      file: data/vars.yml
+    tags: always
+
+  - name: Install software on Mac OS
+    ansible.builtin.include_role:
+      name: macos-provisioner
+    tags: always
+
+  - name: Inform user that automation finished
+    community.general.say:
+      msg: 'Finished provisioning your system. Enjoy!'
+      voice: Samantha

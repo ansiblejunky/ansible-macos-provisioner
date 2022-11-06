@@ -1,0 +1,70 @@
+---
+- name: Install Tools (from Mac App Store)
+  ansible.builtin.command: "mas install {{ item }}"
+  register: result
+  changed_when: result.stdout | regex_search('already installed')
+  with_items: "{{ software_mac_app_store }}"
+  tags: app-store
+
+# Would like to use just `homebrew` module to install any software
+# However, homebrew module will report error with cask "is already installed".
+# https://github.com/ansible-collections/community.general/pull/4177
+- name: Install Tools (cask)
+  community.general.homebrew_cask:
+    name: "{{ software_homebrew_cask }}"
+    state: present
+  tags: cask
+
+- name: Install Tools (formulae)
+  community.general.homebrew:
+    name: "{{ software_homebrew_formulae }}"
+    state: present
+  tags: formulae
+
+# Note, `vagrant plugin install` command is not idempotent and always installs plugin
+# https://github.com/hashicorp/vagrant/issues/12987
+# Could do a wrapper and use `vagrant plugin list` or read `~/.vagrant.d/plugins.json`
+- name: Install vagrant plugins
+  ansible.builtin.command: "vagrant plugin install {{ item }}"
+  register: result
+  changed_when: result.stdout | regex_search('Installed the plugin')
+  with_items: "{{ vagrant_plugins }}"
+  tags: vagrant
+
+- name: Ensure custom folders are created
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  loop: "{{ finder_folders }}"
+  tags: finder
+
+- name: Ensure side-bar items added to Finder
+  ansible.builtin.command: "mysides add {{ item }}"
+  register: result
+  changed_when: result.stdout | regex_search('Installed the plugin')
+  with_items: "{{ finder_sidebar }}"
+  tags: finder
+
+- name: Create shortcuts
+  ansible.builtin.copy:
+    dest: "{{ item.dest }}"
+    content: "{{ item.content }}"
+    mode: "{{ item.mode }}"
+  with_items: "{{ finder_shortcuts }}"
+  tags: finder
+
+- name: Create links
+  ansible.builtin.file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+    mode: "{{ item.mode }}"
+  with_items: "{{ finder_links }}"
+  tags: finder
+
+# Change Mac OS User Preferences via Command Line
+# https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/
+- name: Set system preferences
+  ansible.builtin.command: "defaults write {{ item.domain }} {{ item.key }} {{ item.value }}"
+  with_items: "{{ system_prefs }}"
+  tags: system

@@ -1,0 +1,47 @@
+---
+- name: Update brew to latest version
+  community.general.homebrew:
+    update_homebrew: yes
+
+- name: Run brew cleanup
+  ansible.builtin.command: brew cleanup
+  register: results
+  #changed_when: "'already installed' not in results.stdout"
+
+- name: Run brew doctor
+  ansible.builtin.command: brew doctor
+  register: results
+  failed_when: false
+
+- name: List system updates (install with `softwareupdate --install`)
+  ansible.builtin.command: softwareupdate --list
+  register: results
+  failed_when: false
+
+- name: Install pre-reqs (formulae)
+  community.general.homebrew:
+    name: 
+      - git # Use the latest git instead of the Apple git (from Xcode)
+      - git-flow
+      - mas # Automate installation of software in Mac App Store https://github.com/mas-cli/mas
+      - dockutil # Automate OSX Docked items - https://github.com/kcrawford/dockutil
+    state: present
+
+- name: Install pre-reqs (casks)
+  community.general.homebrew_cask:
+    name: 
+      - mysides # Automate OSX Finder Sidebar Items - https://github.com/mosen/mysides
+    state: present
+
+# Note, if you receive error `cannot overwrite multiple values with a single value` then correct your config with:
+# git config [--local/--global/--system] --replace-all key value
+- name: Set git config - user name
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "{{ git_user_name }}"
+- name: Set git config - user email
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ git_user_email }}"
