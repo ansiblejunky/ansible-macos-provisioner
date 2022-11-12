@@ -9,6 +9,9 @@ echo
 echo "OSX Provisioner"
 echo "Initialize system with base required software"
 
+task "List system and application updates"
+softwareupdate -l
+
 task "Verify Xcode command line tools installation"
 AMP_XCODE_OUTPUT=`xcode-select -p`
 AMP_XCODE_PATH="/Library/Developer/CommandLineTools"
@@ -38,8 +41,8 @@ else
 fi
 
 task "Perform brew cleanup tasks"
-brew cleanup
-brew doctor
+brew cleanup --quiet
+brew doctor --quiet
 
 task "Prepare python environment"
 #TODO: Check if pyenv is installed and ansible is available (but careful about not upgrading)
