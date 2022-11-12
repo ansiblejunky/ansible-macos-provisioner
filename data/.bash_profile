@@ -36,7 +36,7 @@ chrome () {
 
 # Go Environment
 # -------------------------------------------------------------
-export GOPATH=$HOME/go
+#export GOPATH=$HOME/go
 # -------------------------------------------------------------
 
 # Python Environments
@@ -48,8 +48,8 @@ eval "$(pyenv init --path)"
 
 # Ruby Environments
 # -------------------------------------------------------------
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
 # -------------------------------------------------------------
 
 
