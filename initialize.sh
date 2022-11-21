@@ -50,7 +50,7 @@ brew install --quiet pyenv
 brew install --quiet pyenv-virtualenv
 
 AMP_PYENV_VERSION=`pyenv version-name`
-if [[ "$AMP_PYENV_VERSION" == "ansible" ]]
+if [[ "$AMP_PYENV_VERSION" == "dev" ]]
 then
     echo -e "Found ansible virtual environment: " $AMP_PYENV_VERSION
 else
@@ -60,9 +60,9 @@ else
     # Set the python version as the global default
     pyenv global $(pyenv install --list | grep --extended-regexp "^\s*[0-9][0-9.]*[0-9]\s*$" | tail -1)
     # Create virtual environment for our ansible tools
-    pyenv virtualenv ansible
-    pyenv global ansible
-    pip install ansible
+    pyenv virtualenv dev`
+    pyenv global dev
+    pip install dev
 fi
 
 task "Prepare bash environment"
