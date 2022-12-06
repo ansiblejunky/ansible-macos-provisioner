@@ -62,7 +62,8 @@ else
     # Create virtual environment for our ansible tools
     pyenv virtualenv dev`
     pyenv global dev
-    pip install dev
+    pip install ansible ansible-lint ansible-navigator[ansible-core] ansible-builder
+    pip install --upgrade pip
 fi
 
 task "Prepare bash environment"

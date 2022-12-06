@@ -1,0 +1,12 @@
+---
+# TODO: Upgrade various elements of macOS system with one playbook
+- hosts: localhost
+  connection: local
+
+  tasks:
+  - name: Upgrade brew packages
+  - name: Upgrade pyenv virtual environment with latest packages
+  - name: Upgrade system updates
+  - name: Upgrade vagrant boxes and plugins
+  - name: What else?
+
