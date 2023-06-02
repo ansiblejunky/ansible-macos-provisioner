@@ -115,6 +115,7 @@ For the best free Mac applications, look here: http://thriftmac.com
 
 ## Improvements
 
+- TODO: Add configuration of `vim` using `~/.vimrc` file template
 - Automate postman preferences and saved environments (export them and then import them)
 - Automate iterm2 preferences; for now backup your iTerm2 preferences using these commands
   - Copy preferences file: `cp ~/Library/Preferences/com.googlecode.iterm2.plist data/`
