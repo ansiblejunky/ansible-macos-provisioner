@@ -25,19 +25,20 @@ else
     xcode-select --install
 fi
 
-
 # list all available xcode command line tools
 #ls /Library/Developer/CommandLineTools/usr/bin
 
+
+# brew installation folders: (/opt/homebrew/bin/brew for Apple Silicon, /usr/local/bin/brew for macOS Intel and /home/linuxbrew/.linuxbrew/bin/brew for Linux)
 task "Verify Homebrew installation"
-AMP_BREW_OUTPUT="$(which brew)"
-AMP_BREW_PATH="/usr/local/bin/brew"
-if [[ "$AMP_BREW_OUTPUT" == "$AMP_BREW_PATH" ]]
+which brew > /dev/null 2>&1
+if [ $? -eq 1 ]; then
 then
-    echo -e "Found homebrew: " `which brew`
-else
     echo -e "Brew was not found ... attempting installation\n"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    PATH=$PATH:/opt/homebrew/bin:/usr/local/bin:/home/linuxbrew/.linuxbrew/bin
+else
+    echo -e "Found homebrew: " `which brew`
 fi
 
 task "Perform brew cleanup tasks"

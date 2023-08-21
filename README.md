@@ -19,11 +19,11 @@ We first need to perform some manual steps to prepare for automation.
 - Launch Safari app
   - NOTE: We don't have Google Chrome installed yet, so we use what we have. We will automate the install of our favorite browser using Ansible later.
   - Navigate to GitHub.com
-  - Login to GitHub.com
-  - Generate personal access token
+#TODO:  - Login to GitHub.com
+#TODO:  - Generate personal access token
 - Launch Terminal app
-  - (optional) Mac defaults to Zsh
-    - Change default shell: `chsh -s /bin/bash`
+#TODO:  - (optional) Mac defaults to Zsh
+#TODO:    - Change default shell: `chsh -s /bin/bash`
   - Run `git` command to install x-tools
 
 ## Step 2 - Automation
@@ -33,14 +33,13 @@ Time to automate the installation.
 - Clone this repo and authenticate using `username` and `personal-access-token`
   - `git clone https://github.com/ansiblejunky/ansible-macos-provisioner.git`
 - Ensure files in the [data folder](data/) are accurate for your environment
-- Run `./initialize.sh` to initialize your Mac
-  - We cannot run Ansible without some basics
-  - We definitely do **not** want to install Ansible in the system Python that comes with Mac OS!
-  - So let's prepare things the right way by creating our own python environment (using `pyenv`) and putting Ansible there.
-  - Additionally, we will leverage the software packag manager `homebrew` to install software
-- Edit the [variables](./data/vars.yml) and customize it with your software
-- Run `ansible-playbook playbook.yml --ask-become-pass` to install software
-  - Some software will require your password so this asks for it in the beginning so you can go get a coffee
+- Run `./initialize.sh` to initialize your Mac, which will install the following:
+  - `homebrew` package manager
+  - `python` using `pyenv`
+  - `ansible` inside a python virtual environment
+- Customize the [variables](./data/vars.yml) for your software
+- Run `ansible-playbook playbook.yml --ask-become-pass` to install software. Some software will require your password so this asks for it in the beginning so you can go get a coffee
+- Done!
 
 ## Step 3 - Other Stuff
 
