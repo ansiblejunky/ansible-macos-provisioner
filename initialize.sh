@@ -60,7 +60,7 @@ else
     # Set the python version as the global default
     pyenv global $(pyenv install --list | grep --extended-regexp "^\s*[0-9][0-9.]*[0-9]\s*$" | tail -1)
     # Create virtual environment for our ansible tools
-    pyenv virtualenv dev`
+    pyenv virtualenv dev
     pyenv global dev
     pip install ansible ansible-lint ansible-navigator[ansible-core] ansible-builder
     pip install --upgrade pip
