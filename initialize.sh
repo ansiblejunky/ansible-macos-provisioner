@@ -33,7 +33,6 @@ fi
 task "Verify Homebrew installation"
 which brew > /dev/null 2>&1
 if [ $? -eq 1 ]; then
-then
     echo -e "Brew was not found ... attempting installation\n"
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     PATH=$PATH:/opt/homebrew/bin:/usr/local/bin:/home/linuxbrew/.linuxbrew/bin
