@@ -1,4 +1,7 @@
 ---
+git_excludes:
+    - ".DS_Store"
+
 software_mac_app_store:
   - 1270075435 # Strongbox from Mac App Store as Password Manager https://strongboxsafe.com/
   - 441258766 # Magnet
@@ -7,6 +10,8 @@ software_mac_app_store:
 
 software_homebrew_cask:
   # General Tools
+  - homebrew/cask/webcatalog # Transform websites into desktop apps
+  - homebrew/cask/yubico-yubikey-manager
   - homebrew/cask/leech # Download Manager
   - homebrew/cask/izip # Archive manager
   - homebrew/cask/balenaetcher # Disk image burner - https://www.balena.io/etcher/
@@ -15,7 +20,7 @@ software_homebrew_cask:
   #- homebrew/cask/duplicati # Backup Software - duplicati
   - homebrew/cask/appcleaner # Application Management - appcleaner
   #- homebrew/cask/itsycal # Calendar Menu Bar - http://www.mowglii.com/itsycal/
-  - keyboard-lock # keyboard-lock to allow cleaning your keyboard
+  - keyboard-cleaner # allow cleaning your keyboard easily
   - homebrew/cask/iterm2 # Terminal Manager
   - homebrew/cask/postman # Postman
   - homebrew/cask/google-chrome # Google Chrome Browser
@@ -53,13 +58,15 @@ software_homebrew_formulae:
   - httpie # better alternative to curl and wget https://httpie.org/
   - jq # json processor https://stedolan.github.io/jq/
   - yq # yaml processor https://mikefarah.gitbook.io/yq/
-  - bash-completion # handles completion of many commandline tools
+  - zsh-completions # handles completion of many commandline tools
+  - tmux # terminal multiplexer
   - tox # https://tox.readthedocs.io/en/latest/
   - tree
   - gnu-tar # required for Ansible unarchive module
   - gnu-sed # required for Ansible Automation Platform installer
   - gs # Ghostscript (for merging pdf files)
   # Supporting Tools
+  - nmap
   - vagrant-completion
   - packer
   - packer-completion
@@ -102,6 +109,9 @@ finder_links:
     mode: a+x
 
 system_prefs:
+  # Bear in mind that some changes require you to restart an app or, occasionally, a full reboot of the operating system
   - domain: com.apple.dock
     key: autohide
-    value: '-bool true'
+    type: -bool
+    value: 'true'
+    reboot: 'killall Dock'

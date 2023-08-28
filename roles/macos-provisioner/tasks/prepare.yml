@@ -6,7 +6,6 @@
 - name: Run brew cleanup
   ansible.builtin.command: brew cleanup
   register: results
-  #changed_when: "'already installed' not in results.stdout"
 
 - name: Run brew doctor
   ansible.builtin.command: brew doctor

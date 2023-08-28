@@ -10,9 +10,9 @@ HISTIGNORE='ls:bg:fg:history'
 # Record timestamps
 HISTTIMEFORMAT='%F %T '
 # Force multiline commands into one line for easier reading
-shopt -s cmdhist
+#shopt -s cmdhist
 # Store history immediately into .bash_history file instead of when session terminates
-shopt -s histappend
+#shopt -s histappend
 # -------------------------------------------------------------
 
 # Brew Package Manager
@@ -36,7 +36,7 @@ chrome () {
 
 # Go Environment
 # -------------------------------------------------------------
-#export GOPATH=$HOME/go
+export GOPATH=$HOME/go
 # -------------------------------------------------------------
 
 # Python Environments
@@ -48,8 +48,8 @@ eval "$(pyenv init --path)"
 
 # Ruby Environments
 # -------------------------------------------------------------
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 # -------------------------------------------------------------
 
 

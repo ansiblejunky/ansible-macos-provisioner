@@ -2,12 +2,19 @@
 - name: Provision macOS
   hosts: all
   gather_facts: false
+  vars_prompt:
+
+  - name: git_user_name
+    prompt: What is your full name (for git commands)?
+
+  - name: git_user_email
+    prompt: What is your email address (for git commands)?
 
   tasks:
 
   - name: Inform user that automation is starting
     community.general.say:
-      msg: 'Starting Ansible Automation'
+      msg: 'Starting to provision your system'
       voice: Samantha
 
   - name: Include your list of software

@@ -2,106 +2,101 @@
 
 This repo helps provision a brand new or existing `macOS` system.
 
-Some basics before you begin to provision your system. This tool requires Ansible and Homebrew to perform the installations. Why these tools? Ansible is a beautiful automation software. Homebrew is the best package management software for macOS systems. These two are meant for each other when it comes to provisioning a macOS.  If I lost you already, don't worry about it. The tool installs all dependencies necessary for a beautiful easy automated installation. So kick back and relax.
-
-> NOTE: If you already have software installed on your system you should have Homebrew manage these installations. To do that, you simply need to install the software using Homebrew. Typically it will replace the existing installation for you. If not, you might want to try the following tool: https://github.com/exherb/homebrew-cask-replace
+Some basics before you begin to provision your system. This tool requires `Ansible` and `Homebrew` to perform the installations. Why these tools? Ansible is a beautiful automation software. Homebrew is the best package management software for macOS systems. These two are meant for each other when it comes to provisioning a macOS.  If I lost you already, don't worry about it. The tool installs all dependencies necessary for a beautiful easy automated installation. So kick back and relax.
 
 ## Step 1 - Prepare
 
-We first need to perform some manual steps to prepare for automation.
+Prepare system:
 
-- (optional) Launch System Prefs app
-  - Go to Trackpad
-  - Disable "Force Click and haptic feedback"
-- Launch Mac App Store
-  - NOTE: This is useful to automate installation of your Mac App Store purchases
-  - Authenticate in Mac App Store
-- Launch Safari app
-  - NOTE: We don't have Google Chrome installed yet, so we use what we have. We will automate the install of our favorite browser using Ansible later.
-  - Navigate to GitHub.com
-#TODO:  - Login to GitHub.com
-#TODO:  - Generate personal access token
+- (optional) System Preferences -> Trackpad -> Disable "Force Click and haptic feedback"
+- Launch Mac App Store and authenticate using your Apple iCloud Account
 - Launch Terminal app
-#TODO:  - (optional) Mac defaults to Zsh
-#TODO:    - Change default shell: `chsh -s /bin/bash`
   - Run `git` command to install x-tools
+  - Clone this repo: `git clone https://github.com/ansiblejunky/ansible-macos-provisioner.git`
+  - Configure [vim](https://www.linode.com/docs/guides/introduction-to-vim-customization/) editor: `cp data/.vimrc ~/.vimrc`
+- Run `./install_system.sh` to install basic system requirements such as `x-tools`
+- Run `./install_brew.sh` to install homebrew package manager on your Mac
+- Run `./install_python.sh` to install a python environment using `pyenv` and `ansible`
+- Backup/Restore to New Laptop
+  - Launch backup software on old system
+  - Select backup of specific folders
+  - Perform the backup to external device (USB Harddrive, Cloud, etc)
+  - Install your backup software on new system: `brew install carbon-copy-cloner`
+  - Register the software
+  - Restore to the new system
+  - Copy manually other selected files/folders (`.ssh` folder, `.` files, etc)
 
 ## Step 2 - Automation
 
-Time to automate the installation.
+Install the software:
 
-- Clone this repo and authenticate using `username` and `personal-access-token`
-  - `git clone https://github.com/ansiblejunky/ansible-macos-provisioner.git`
-- Ensure files in the [data folder](data/) are accurate for your environment
-- Run `./initialize.sh` to initialize your Mac, which will install the following:
-  - `homebrew` package manager
-  - `python` using `pyenv`
-  - `ansible` inside a python virtual environment
-- Customize the [variables](./data/vars.yml) for your software
-- Run `ansible-playbook playbook.yml --ask-become-pass` to install software. Some software will require your password so this asks for it in the beginning so you can go get a coffee
+- Customize the [software defined](./data/vars.yml) for your system
+- Run `ansible-playbook -v install_software.yml --ask-become-pass` to install software. Some software will require your password so this asks for it in the beginning so you can go get a coffee
 - Done!
 
-## Step 3 - Other Stuff
+## Step 3 - Post Configuration
 
 Other things not automated yet, but common tasks to take care of.
 
-- Launch Google Chrome
-  - Login and sync (this gets extensions, and current tab/window state from previous laptop)
-- Launch your backup software
-  - Login and restore from backup? I prefer to auto install from fresh and only restore documents, etc.
-- Other things
-  - Copy ssh keys from original laptop (maybe use bluetooth or ssh?)
-  - Setup Yubikey (see instructions below)
+- Browser configuration
+  - Launch Brave Browser
+  - Configure Sync to get extensions, tabs, settings from old laptop browser
+  - Navigate to Brave -> History to get opened tabs that were synced from old laptop
+- Oracle VirtualBox configuration
+  - Installation is different when you have Apple M1 chip (not available from homebrew)
+- Yubikey configuration (see instructions below)
+- iTerm2 configuration
+  - Preference -> Advanced -> Mouse Tab, set `Scroll wheel sends arrow keys when in alternate screen mode` to Yes
+  - Configure zsh: `cp data/.zprofile ~/.zprofile`
+  - Install [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh#basic-installation)
+- WebCatalog configuration; install these apps
+  - Gmail
+  - Google Keep
+  - Chat GPT
+  - Google Chat
+- Conference tools configuration
   - Test all conference tools to ensure they can share screens and mic works, etc. (this usually requires a lot of approvals for Mac security)
-  - Configure printer in SysPrefs
-  - Install VSCode extensions; configure Workspaces extension
-    - Extensions
-    - Settings:
-      - WrapTabs
-      - Workbench Decorations: Color
-      - Workbench Decorations: Badges
-      - Workbench › Tree: Indent = 30
+- Printer configuration in System Preferences
+- Visual Studio Code configuration
+  - Extensions
+    - Ansible
+    - Remote Developer
+  - Settings:
+    - WrapTabs
+    - Workbench Decorations: Color
+    - Workbench Decorations: Badges
+    - Workbench › Tree: Indent = 30
 
-## Red Hat Setup
-
-The following are specific to a Red Hat laptop.
-
-Managed Software:
-
-Install Managed Software Center from Mojo to add VPN software, etc. To login to Mojo, you will need to already have your token setup on your phone to get into the VPN to access the Mojo site.
-
-Yubikey Installation:
+## Yubikey
 
 Use the following steps to install and configure your Yubikey on your new Mac.
 
-- download Yubikey Manager tool: `brew cask install homebrew/cask-drivers/yubico-yubikey-manager`
-- start Yubikey Manager app
-- put Yubikey device into Mac slot
-- app should recognize it and display icon and firmware info
-- select "Applications" from top
-- Slot 1 is for "short touch", Slot 2 is for "long touch" so you can setup 2 slots to manage 2 systems and out-of-the-box Yubikey configures slot 1 to work with their website.
+- Install Yubikey Manager tool: `brew install yubico-yubikey-manager`
+- Start Yubikey Manager app
+- Plug the Yubikey device into a Mac slot
+- App should recognize it and display icon and firmware info
+- Select "Applications" from the top
 
-I don't care about connecting to Yubico and I prefer having the short touch mechanism, so I did the following...
+Slot 1 is for "short touch", Slot 2 is for "long touch" so you can setup 2 slots to manage 2 systems and out-of-the-box Yubikey configures slot 1 to work with their website. I don't care about connecting to Yubico and I prefer having the short touch mechanism, so I did the following...
 
-- select "Delete" on slot 1 to remove the existing configuration
-- select "Configure" on slot 1
-- select "OATH-HOTP" option
-- Connect to Red Hat's VPN using Viscosity software and your current FreeOTP app on your phone for the token (you need to be on VPN to create a new software token)
-- select "Create Software Token" from left-hand panel
-- ensure "Generate OTP Key on the Server" is enabled
-- enter the PIN you want (probably same you had before)
-- select "Enroll Token" button
-- Use the FreeOTP app on your phone to scan the QR code (it may ask for the issuer - use 'Red Hat')
+- Select "Delete" on slot 1 to remove the existing configuration
+- Select "Configure" on slot 1
+- Select "OATH-HOTP" option
+- To get a "Secret Key" we need to generate that from RH website
+  - Connect to Red Hat's VPN using Viscosity software and your current FreeOTP app on your phone
+  - Navigate to https://token.redhat.com/ and login using kerberos credentials
+  - Select "Create Software Token" from left-hand panel
+  - ensure "Generate OTP Key on the Server" is enabled
+  - enter a Description of the token
+  - enter the PIN you want (probably same you had before)
+  - select "Enroll Token" button
+  - Use the FreeOTP app on your phone to scan the QR code (it may ask for the issuer - use 'Red Hat')
 - On the website, there is a link at the top to get the URL when you do not have a QR scanner. Use that and it shows you the Secret Key in the URL it generates. 
 - Place the secret key string into the Yubico Manager app - the last we left it sitting on a page where it requests the secret key. Ensure it has 6 digits set as well.
 - Select "Finish" on the Yubico Manager app and it configures the slot correctly.
 - Go back to the Red Hat token.redhat.com site and use the testing page to test your PIN and TOKEN. If necessary sync the token. 
 - You should get success on the sync and also testing it using the "TEST TOKEN" area on the bottom. 
 - You're done! Dang!
-
-## Laptop Skin
-
-If you really want to get fancy with your new laptop, I recommend to order a laptop [skin](http://www.skinit.com/).
 
 ## Where to find software
 
@@ -114,19 +109,14 @@ For the best free Mac applications, look here: http://thriftmac.com
 
 ## Improvements
 
-- TODO: Add configuration of `vim` using `~/.vimrc` file template
+- TODO: Fix Ansible tasks for shortcuts, links
 - Automate postman preferences and saved environments (export them and then import them)
-- Automate iterm2 preferences; for now backup your iTerm2 preferences using these commands
+- Automate iTerm2 preferences; for now backup your iTerm2 preferences using these commands
   - Copy preferences file: `cp ~/Library/Preferences/com.googlecode.iterm2.plist data/`
   - Convert from binary to XML format: `plutil -convert xml1 data/com.googlecode.iterm2.plist`
   - More information [here](https://apple.stackexchange.com/questions/111534/iterm2-doesnt-read-com-googlecode-iterm2-plist/111559#111559)
-- Installing virtualbox requires approval of software extension so it fails on first attempt
-- Automate google chrome preferences and extensions
 - Automate docked items
-- Maybe ignore_errors: true in case a brew install fails 
-- Automate the activation of Tuxera NTFS software
-- Configure screen saver and wallpaper to point to `Pictures/_wallpapers_`
-- Customize left panel of Finder application (add favoritate locations)
+- Configure screen saver and wallpaper to point to `Pictures/images`
 - Pages (verify book opens)
 - GarageBand (transfer files)
 - Register the Carbon Copy Cloner software
@@ -146,13 +136,7 @@ For the best free Mac applications, look here: http://thriftmac.com
   - XnConvert (convert multiple images): `brew cask install xnconvert`
   - [Balena Etcher](https://www.balena.io/etcher/) disk burning tool: `brew cask install balenaetcher`
   - Install wireshark
-  - Install tmux
-  - Install nmap
   - Install gimp as image editor tool
-- From App Store
-  - Free MP4 Converter
-  - Night Sky
-  - Loopback (for external monitor sound)
 
 ## Notable Mac commandline tools
 
