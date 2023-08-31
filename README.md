@@ -60,7 +60,8 @@ Other things not automated yet, but common tasks to take care of.
 - Visual Studio Code configuration
   - Extensions
     - Ansible
-    - Remote Developer
+    - Remote Development
+    - vscode-pdf
   - Settings:
     - WrapTabs
     - Workbench Decorations: Color
