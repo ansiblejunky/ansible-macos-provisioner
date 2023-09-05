@@ -63,10 +63,8 @@ Other things not automated yet, but common tasks to take care of.
     - Remote Development
     - vscode-pdf
   - Settings:
-    - WrapTabs
-    - Workbench Decorations: Color
-    - Workbench Decorations: Badges
-    - Workbench › Tree: Indent = 30
+    - `Window: Title` == `${rootName}${separator}${profileName}`
+    - `Workbench › Tree: Indent` == `20`
 
 ## Yubikey
 
