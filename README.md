@@ -43,7 +43,7 @@ Other things not automated yet, but common tasks to take care of.
   - Configure Sync to get extensions, tabs, settings from old laptop browser
   - Navigate to Brave -> History to get opened tabs that were synced from old laptop
 - Oracle VirtualBox configuration
-  - Installation is different when you have Apple M1 chip (not available from homebrew)
+  - Install the [Test Build](https://www.virtualbox.org/wiki/Testbuilds) instead when you have Apple M1/M2 chip
 - Yubikey configuration (see instructions below)
 - iTerm2 configuration
   - Preference -> Advanced -> Mouse Tab, set `Scroll wheel sends arrow keys when in alternate screen mode` to Yes
