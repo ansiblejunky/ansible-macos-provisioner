@@ -42,8 +42,6 @@ Other things not automated yet, but common tasks to take care of.
   - Launch Brave Browser
   - Configure Sync to get extensions, tabs, settings from old laptop browser
   - Navigate to Brave -> History to get opened tabs that were synced from old laptop
-- Oracle VirtualBox configuration
-  - Install the [Test Build](https://www.virtualbox.org/wiki/Testbuilds) instead when you have Apple M1/M2 ARM chip
 - Yubikey configuration (see instructions below)
 - iTerm2 configuration
   - Preference -> Advanced -> Mouse Tab, set `Scroll wheel sends arrow keys when in alternate screen mode` to Yes
@@ -57,14 +55,44 @@ Other things not automated yet, but common tasks to take care of.
 - Conference tools configuration
   - Test all conference tools to ensure they can share screens and mic works, etc. (this usually requires a lot of approvals for Mac security)
 - Printer configuration in System Preferences
-- Visual Studio Code configuration
-  - Extensions
-    - Ansible
-    - Remote Development
-    - vscode-pdf
-  - Settings:
-    - `Window: Title` == `${rootName}${separator}${profileName}`
-    - `Workbench › Tree: Indent` == `20`
+
+## Visual Studio Code
+
+The following is my custom configuration of VSCode:
+
+[Extensions](https://code.visualstudio.com/docs/editor/extension-marketplace#_command-line-extension-management):
+
+```shell
+# Ansible
+code --install-extension redhat.ansible
+# TODO Highlight
+code --install-extension wayou.vscode-todo-highlight
+# VSCode Remote Developer
+code --install-extension ms-vscode-remote.vscode-remote-extensionpack
+# VSCode PDF Reader
+code --install-extension tomoki1207.pdf
+```
+
+Settings (edit `$HOME/Library/Application\ Support/Code/User/settings.json`):
+
+```json
+{
+  "window.title": "${rootName}${separator}${profileName}",
+  "workbench.tree.indent": 20
+}
+```
+
+Open Windows:
+
+```shell
+# Open windows with common folders
+code ~/Projects/customers
+code ~/Projects/ansible-automation-journey
+code ~/Projects/ansible-role-template
+code ~/Projects/ansible-project-template
+code ~/Projects/ansible-networking
+```
+
 
 ## Yubikey
 
