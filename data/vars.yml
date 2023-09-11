@@ -78,6 +78,7 @@ software_homebrew_formulae:
   - ffmpeg
   - youtube-dl
   - pandoc # document converter - http://pandoc.org/
+  - openshift-cli # red hat openshift command line tools
 
 vagrant_plugins:
   - vagrant-hostmanager
