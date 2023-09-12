@@ -78,7 +78,8 @@ Settings (edit `$HOME/Library/Application\ Support/Code/User/settings.json`):
 ```json
 {
   "window.title": "${rootName}${separator}${profileName}",
-  "workbench.tree.indent": 20
+  "workbench.tree.indent": 20,
+  "python.terminal.activateEnvironment": false
 }
 ```
 
