@@ -45,7 +45,7 @@ Other things not automated yet, but common tasks to take care of.
 - Yubikey configuration (see instructions below)
 - iTerm2 configuration
   - Preference -> Advanced -> Mouse Tab, set `Scroll wheel sends arrow keys when in alternate screen mode` to Yes
-  - Configure zsh: `cp data/.zprofile ~/.zprofile`
+  - Configure zsh: `cp data/.zshrc ~/.zshrc`
   - Install [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh#basic-installation)
 - WebCatalog configuration; install these apps
   - Gmail
