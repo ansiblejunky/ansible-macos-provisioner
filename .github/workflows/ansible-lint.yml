@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout
+        uses: actions/checkout@main
       - name: Run ansible-lint
         uses: ansible/ansible-lint@main
