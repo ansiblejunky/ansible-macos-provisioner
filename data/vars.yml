@@ -10,6 +10,7 @@ software_mac_app_store:
 
 software_homebrew_cask:
   # General Tools
+  - homebrew/cask/MonitorControl # Control external monitor audio and brightness
   - homebrew/cask/webcatalog # Transform websites into desktop apps
   - homebrew/cask/yubico-yubikey-manager
   - homebrew/cask/leech # Download Manager
@@ -65,15 +66,15 @@ software_homebrew_formulae:
   - tree
   - gnu-tar # required for Ansible unarchive module
   - gnu-sed # required for Ansible Automation Platform installer
-  - gs # Ghostscript (for merging pdf files)
+  #- gs # Ghostscript (for merging pdf files)
   # Supporting Tools
   - nmap
-  - vagrant-completion
-  - packer
-  - packer-completion
+  #- vagrant-completion
+  #- packer
+  #- packer-completion
   - docker-completion
   - awscli # Amazon AWS command line interface https://github.com/aws/aws-cli
-  - awsebcli # Amazon AWS elastic beanstalk cli https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html
+  #- awsebcli # Amazon AWS elastic beanstalk cli https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html
   # Media (video/music) management tools
   - libdvdcss # Handbrake dependency
   - ffmpeg
