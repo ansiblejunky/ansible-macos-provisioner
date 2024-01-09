@@ -55,6 +55,7 @@ software_homebrew_cask:
 software_homebrew_formulae:
   # Basic Developer Tools
   - wget
+  - monitorcontrol # control sound on external monitors
   - httpie # better alternative to curl and wget https://httpie.org/
   - jq # json processor https://stedolan.github.io/jq/
   - yq # yaml processor https://mikefarah.gitbook.io/yq/

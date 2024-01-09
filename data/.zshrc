@@ -152,7 +152,7 @@ eval "$(pyenv virtualenv-init -)"
 # -------------------------------------------------------------
 # Enable gnu-sed to handle Ansible Automation Platform installer using sed
 # Requires `brew install gnu-sed`
-PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 # Set default text editor for Red Hat Openshift to use VSCode
 export OC_EDITOR="code -w"
 # -------------------------------------------------------------

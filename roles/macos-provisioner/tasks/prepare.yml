@@ -1,7 +1,7 @@
 ---
 - name: Update brew to latest version
   community.general.homebrew:
-    update_homebrew: yes
+    update_homebrew: true
 
 - name: Run brew cleanup
   ansible.builtin.command: brew cleanup
@@ -19,7 +19,7 @@
 
 - name: Install pre-reqs (formulae)
   community.general.homebrew:
-    name: 
+    name:
       - git # Use the latest git instead of the Apple git (from Xcode)
       - git-flow
       - mas # Automate installation of software in Mac App Store https://github.com/mas-cli/mas
@@ -28,7 +28,7 @@
 
 - name: Install pre-reqs (casks)
   community.general.homebrew_cask:
-    name: 
+    name:
       - mysides # Automate OSX Finder Sidebar Items - https://github.com/mosen/mysides
     state: present
 
@@ -44,3 +44,8 @@
     name: user.email
     scope: global
     value: "{{ git_user_email }}"
+- name: Set git config - default branch name
+  community.general.git_config:
+    name: init.defaultBranch
+    scope: global
+    value: main

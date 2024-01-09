@@ -4,30 +4,30 @@
   gather_facts: false
   vars_prompt:
 
-  - name: git_user_name
-    prompt: What is your full name (for git commands)?
+    - name: git_user_name
+      prompt: What is your full name (for git commands)?
 
-  - name: git_user_email
-    prompt: What is your email address (for git commands)?
+    - name: git_user_email
+      prompt: What is your email address (for git commands)?
 
   tasks:
 
-  - name: Inform user that automation is starting
-    community.general.say:
-      msg: 'Starting to provision your system'
-      voice: Samantha
+    - name: Inform user that automation is starting
+      community.general.say:
+        msg: 'Starting to provision your system'
+        voice: Samantha
 
-  - name: Include your list of software
-    ansible.builtin.include_vars:
-      file: data/vars.yml
-    tags: always
+    - name: Include your list of software
+      ansible.builtin.include_vars:
+        file: data/vars.yml
+      tags: always
 
-  - name: Install software on Mac OS
-    ansible.builtin.include_role:
-      name: macos-provisioner
-    tags: always
+    - name: Install software on Mac OS
+      ansible.builtin.include_role:
+        name: macos-provisioner
+      tags: always
 
-  - name: Inform user that automation finished
-    community.general.say:
-      msg: 'Finished provisioning your system. Enjoy!'
-      voice: Samantha
+    - name: Inform user that automation finished
+      community.general.say:
+        msg: 'Finished provisioning your system. Enjoy!'
+        voice: Samantha

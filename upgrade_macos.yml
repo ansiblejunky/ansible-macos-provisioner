@@ -4,9 +4,18 @@
   connection: local
 
   tasks:
-  - name: Upgrade brew packages
-  - name: Upgrade pyenv virtual environment with latest packages
-  - name: Upgrade system updates
-  - name: Upgrade vagrant boxes and plugins
-  - name: What else?
-
+    - name: Upgrade brew packages
+      debug:
+        msg: true
+    - name: Upgrade pyenv virtual environment with latest packages
+      debug:
+        msg: true
+    - name: Upgrade system updates
+      debug:
+        msg: true
+    - name: Upgrade vagrant boxes and plugins
+      debug:
+        msg: true
+    - name: What else?
+      debug:
+        msg: true
