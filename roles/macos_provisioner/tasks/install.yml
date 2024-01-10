@@ -1,5 +1,5 @@
 ---
-- name: Install Tools (from Mac App Store)
+- name: Install Tools - from Mac App Store
   ansible.builtin.command: "mas install {{ item }}"
   register: result
   changed_when: result.stdout | regex_search('already installed')
@@ -10,14 +10,14 @@
 # Would like to use just `homebrew` module to install any software
 # However, homebrew module will report error with cask "is already installed".
 # https://github.com/ansible-collections/community.general/pull/4177
-- name: Install Tools (cask)
+- name: Install Tools - Casks # noqa ignore-errors
   community.general.homebrew_cask:
     name: "{{ software_homebrew_cask }}"
     state: present
   tags: cask
   ignore_errors: true
 
-- name: Install Tools (formulae)
+- name: Install Tools - Formulae # noqa ignore-errors
   community.general.homebrew:
     name: "{{ software_homebrew_formulae }}"
     state: present
@@ -35,10 +35,11 @@
   tags: vagrant
   ignore_errors: true
 
-- name: Ensure custom folders are created
+- name: Ensure custom folders are created # noqa ignore-errors
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
+    mode: "u+rwx"
   loop: "{{ finder_folders }}"
   tags: finder
   ignore_errors: true
@@ -51,7 +52,7 @@
   tags: finder
   ignore_errors: true
 
-- name: Create shortcuts
+- name: Create shortcuts # noqa ignore-errors
   ansible.builtin.copy:
     dest: "{{ item.dest }}"
     content: "{{ item.content }}"
@@ -60,7 +61,7 @@
   tags: finder
   ignore_errors: true
 
-- name: Create links
+- name: Create links # noqa ignore-errors
   ansible.builtin.file:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -73,8 +74,9 @@
 # Change Mac OS User Preferences via Command Line
 # https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/
 # Bear in mind that some changes require you to restart an app or, occasionally, a full reboot of the operating system
-- name: Set system preferences
+- name: Set system preferences # noqa ignore-errors
   ansible.builtin.command: "defaults write {{ item.domain }} {{ item.key }} {{ item.type }} {{ item.value }} && {{ item.reboot }}"
   with_items: "{{ system_prefs }}"
   tags: system
+  changed_when: true
   ignore_errors: true

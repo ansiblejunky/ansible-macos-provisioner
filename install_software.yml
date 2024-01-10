@@ -24,7 +24,7 @@
 
     - name: Install software on Mac OS
       ansible.builtin.include_role:
-        name: macos-provisioner
+        name: macos_provisioner
       tags: always
 
     - name: Inform user that automation finished

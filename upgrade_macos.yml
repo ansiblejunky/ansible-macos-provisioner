@@ -1,21 +1,21 @@
 ---
-# TODO: Upgrade various elements of macOS system with one playbook
-- hosts: localhost
+- name: Upgrade various elements of macOS system with one playbook
+  hosts: localhost
   connection: local
 
   tasks:
     - name: Upgrade brew packages
-      debug:
+      ansible.builtin.debug:
         msg: true
     - name: Upgrade pyenv virtual environment with latest packages
-      debug:
+      ansible.builtin.debug:
         msg: true
     - name: Upgrade system updates
-      debug:
+      ansible.builtin.debug:
         msg: true
     - name: Upgrade vagrant boxes and plugins
-      debug:
+      ansible.builtin.debug:
         msg: true
     - name: What else?
-      debug:
+      ansible.builtin.debug:
         msg: true
