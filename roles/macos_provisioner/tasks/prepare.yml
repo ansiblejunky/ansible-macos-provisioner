@@ -49,3 +49,8 @@
     name: init.defaultBranch
     scope: global
     value: main
+- name: Set git config - default ignored files
+  community.general.git_config:
+    name: core.excludesfile
+    scope: global
+    value: ~/.gitignore
