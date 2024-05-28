@@ -81,6 +81,8 @@ software_homebrew_formulae:
   - youtube-dl
   - pandoc # document converter - http://pandoc.org/
   - openshift-cli # red hat openshift command line tools
+  - act # Run Github Actions locally https://nektosact.com/
+  - gh # Run GitHub operations locally https://cli.github.com/
 
 vagrant_plugins:
   - vagrant-hostmanager
