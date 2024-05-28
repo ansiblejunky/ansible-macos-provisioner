@@ -54,3 +54,8 @@
     name: core.excludesfile
     scope: global
     value: ~/.gitignore
+- name: Set git config - create alias to add, commit and push in one command
+  community.general.git_config:
+    name: alias.acp
+    scope: global
+    value: '! acp() { git commit -a -m "$1" && git push ; } ; acp'
