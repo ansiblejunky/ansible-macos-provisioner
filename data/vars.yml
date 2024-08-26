@@ -52,6 +52,8 @@ software_homebrew_cask:
   - homebrew/cask/calibre # epub/pdf reader
   # Network management
   - angry-ip-scanner # https://angryip.org/
+  - blackhole-2ch # audio midi driver to record audio and video
+  - mediahuman-audio-converter # audio converter https://www.mediahuman.com/audio-converter/
 
 software_homebrew_formulae:
   # Basic Developer Tools
