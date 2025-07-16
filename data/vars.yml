@@ -43,6 +43,8 @@ software_homebrew_cask:
   - homebrew/cask/microsoft-teams
   - homebrew/cask/google-chat
   - homebrew/cask/whatsapp
+  - homebrew/cask/disk-drill # Disk Drill - data recovery software
+  - homebrew/cask/dupeguru # Duplicate file finder
   # Media (video/music) management tools
   - homebrew/cask/handbrake
   - homebrew/cask/vlc
@@ -85,6 +87,7 @@ software_homebrew_formulae:
   - openshift-cli # red hat openshift command line tools
   - act # Run Github Actions locally https://nektosact.com/
   - gh # Run GitHub operations locally https://cli.github.com/
+  - ddrescue # Data Recovery https://www.gnu.org/software/ddrescue/ddrescue.html
 
 vagrant_plugins:
   - vagrant-hostmanager

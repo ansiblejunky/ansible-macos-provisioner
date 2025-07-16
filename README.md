@@ -165,6 +165,9 @@ For the best free Mac applications, look here: http://thriftmac.com
   - [Balena Etcher](https://www.balena.io/etcher/) disk burning tool: `brew cask install balenaetcher`
   - Install wireshark
   - Install gimp as image editor tool
+- WhatsApp Chat Parser
+	- https://whatsapp-chat-parser.netlify.app/
+	- https://github.com/Pustur/whatsapp-chat-parser
 
 ## Notable Mac commandline tools
 
@@ -181,7 +184,7 @@ dot_clean -m .
 
 ### ditto
 
-https://ss64.com/osx/ditto.html
+[Copy directory hierarchies, create and extract archives](https://ss64.com/osx/ditto.html)
 
 ### say
 
@@ -205,25 +208,34 @@ Examples:
 
 ### caffeinate
 
-https://ss64.com/osx/caffeinate.html
+[Prevent the system from sleeping on behalf of a utility](https://ss64.com/osx/caffeinate.html)
 
 ### banner
 
-banner -w [the width of the banner in pixels] [your message]
+Generate a banner within terminal window.
+
+```shell
+banner -w <pixel-width-of-banner> <message>
+```
 
 ### pbcopy and pbpaste
 
-Provide copying and pasting to the pasteboard (the Clip-board) from command line
-http://osxdaily.com/2007/03/05/manipulating-the-clipboard-from-the-command-line/
+[Provide copying and pasting to the pasteboard (the Clip-board) from command line](http://osxdaily.com/2007/03/05/manipulating-the-clipboard-from-the-command-line/)
+
+### rsync
+
+`rsync` command to transfer/copy files with time/dates retained:
+
+```shell
+rsync -r --progress --stats -h --times --crtimes /Volumes/FRW-VIDS /Volumes/FRW-SSD/USB-DRIVES/`
+```
 
 ### Multiple File Renamer
 
-You may need to rename multiple files at the same time, to conform to some naming convention. 
+Rename multiple files at the same time and conform to some naming convention. 
 
-Option #1: Use the Finder and this [blog](https://tidbits.com/2018/06/28/macos-hidden-treasures-batch-rename-items-in-the-finder/)
-
-Option #2: brew install rename
-http://plasmasturm.org/code/rename/
+- Option #1: [Use the Finder](https://tidbits.com/2018/06/28/macos-hidden-treasures-batch-rename-items-in-the-finder/)
+- Option #2: [brew install rename](http://plasmasturm.org/code/rename/)
 
 ## Author
 
