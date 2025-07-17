@@ -1,6 +1,6 @@
 ---
 git_excludes:
-    - ".DS_Store"
+  - ".DS_Store"
 
 software_mac_app_store:
   - 1270075435 # Strongbox from Mac App Store as Password Manager https://strongboxsafe.com/
